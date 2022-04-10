@@ -1,0 +1,60 @@
+{
+  "data" : [      
+    { 
+      "name":"Home",
+      "text":"", "icon":"bi-house-door",
+      "link":"home",
+      "user":["indx", "bznx"],
+      "subs":["lite"],
+      "actv":true
+    },
+    { 
+      "name":"Events",
+      "text":"", "icon":"bi-people",
+      "link":"events",
+      "user":["bznx"],
+      "subs":["lite"],
+      "actv": false
+    },
+    { 
+      "name":"Tokens",
+      "text":"", "icon":"bi-people",
+      "link":"tokens",
+      "user":["indx", "bznx"],
+      "subs":["lite"],
+      "actv": false
+    },
+    { 
+      "name":"Network",
+      "text":"", "icon":"bi-people",
+      "link":"network",
+      "user":["indx", "bznx"],
+      "subs":["lite"],
+      "actv": false
+    },
+    { 
+      "name":"Transfers",
+      "text":"", "icon":"bi-check-circle",
+      "link":"transfers",
+      "user":["bznx"],
+      "subs":["lite"],
+      "actv":true
+    },
+    { 
+      "name":"Store",
+      "text":"", "icon":"bi-check-circle",
+      "link":"store",
+      "user":["bznx"],
+      "subs":["lite"],
+      "actv":true
+    },
+    { 
+      "name":"Transfers",
+      "text":"", "icon":"bi-check-circle",
+      "link":"transfers",
+      "user":["indx"],
+      "subs":["lite"],
+      "actv":true
+    }
+  ]
+}

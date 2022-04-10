@@ -1,0 +1,13 @@
+{
+    "data" : [
+      {"code":"9", "text":"All Status", "colr":"tone", "icon": "bi-check-circle-fill"},
+      {"code":"0", "text":"Pending", "colr":"warning", "icon": "bi-exclamation-circle-fill"}, 
+      {"code":"1", "text":"Processing", "colr":"warning", "icon": "bi-exclamation-circle-fill"},
+      {"code":"2", "text":"Scheduled", "colr":"primary", "icon": "bi-exclamation-circle-fill"},
+      {"code":"3", "text":"Failed", "colr":"danger", "icon": "bi-exclamation-circle-fill"},
+      {"code":"4", "text":"Cancelled", "colr":"tint", "icon": "bi-exclamation-circle-fill"},
+      {"code":"5", "text":"Declined", "colr":"danger", "icon": "bi-exclamation-circle-fill"},
+      {"code":"6", "text":"Success", "colr":"success", "icon": "bi-check-circle-fill"},
+      {"code":"7", "text":"Expired", "colr":"tint", "icon": "bi-check-circle-fill"}
+    ]
+  }

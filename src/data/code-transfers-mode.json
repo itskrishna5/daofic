@@ -1,0 +1,12 @@
+{
+    "data" : [
+      {"code":"1", "text":"Transfer", "colr":"success", "icon": "bi-exclamation-circle-fill"},
+      {"code":"2", "text":"Transfer(S)", "colr":"success", "icon": "bi-exclamation-circle-fill"},
+      {"code":"3", "text":"Collect", "colr":"success", "icon": "bi-exclamation-circle-fill"},
+      {"code":"4", "text":"Collect(S)", "colr":"success", "icon": "bi-exclamation-circle-fill"},
+      {"code":"5", "text":"", "colr":"danger", "icon": "bi-exclamation-circle-fill"},
+      {"code":"6", "text":"Add Funds", "colr":"primary", "icon": "bi-check-circle-fill"},
+      {"code":"7", "text":"Withdraw", "colr":"tone", "icon": "bi-check-circle-fill"},
+      {"code":"9", "text":"E-Sign", "colr":"info", "icon": "bi-check-circle-fill"}
+    ]
+  }

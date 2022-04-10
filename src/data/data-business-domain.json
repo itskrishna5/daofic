@@ -1,0 +1,59 @@
+{
+  "data" : [
+    { "name":"General Services",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Education & Upskilling",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Social Networking",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Media & Entertainment",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Financial",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Hospitality",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"E-Commerce & Retail",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Healthcare",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Shipping",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Real Estate",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    },
+    { "name":"Other",
+      "text":"", 
+      "icon":"",
+      "actv":true
+    }
+  ]
+}

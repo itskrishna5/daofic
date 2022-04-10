@@ -1,0 +1,88 @@
+{
+  "data" : [
+    {
+      "name": "Avalance Fuji",
+      "crnc": "AVAX",
+      "mode": "test",
+      "code": "43113",
+      "avtr": "X",
+      "cont": "0x47C812b83918E068D9468c4BFAc38f5271B850ad",
+      "urin": "https://api.avax-test.network/ext/bc/C/rpc"
+    },
+    {
+      "name": "Avalance",
+      "crnc": "AVAX",
+      "mode": "main",
+      "code": "43114",
+      "avtr": "X",
+      "cont": "",
+      "urin": "https://api.avax.network/ext/bc/C/rpc"
+    },
+    {
+      "name": "Rinkeby",
+      "crnc": "ETH",
+      "mode": "test",
+      "code": "4",
+      "avtr": "X",
+      "cont": "0xd2e3E5753d7cEba4C1Cc255C2B9C0a4775f1D101",
+      "urin": "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+    }, 
+    {
+      "name": "Celo",
+      "crnc": "CELO",
+      "mode": "test",
+      "code": "44787",
+      "avtr": "X",
+      "cont": "0x63Ab6D084669278b751EAAe13bf845d0544d34BF",
+      "urin": "https://alfajores-forno.celo-testnet.org"
+    },
+    {
+      "name": "Celo",
+      "crnc": "CELO",
+      "mode": "main",
+      "code": "42220",
+      "avtr": "X",
+      "cont": "0x307cc5AD845F24773F17cDE8B6863E0F202e7B30",
+      "urin": "https://forno.celo.org"
+    },
+    {
+      "name": "Metis Stardust",
+      "crnc": "METIS",
+      "mode": "test",
+      "code": "588",
+      "avtr": "X",
+      "cont": "0x9998dB50303774EF771E31B6502A5b43159C32C0",
+      "urin": "https://stardust.metis.io/?owner=588"
+    },
+    {
+      "name": "Metis Andromeda",
+      "crnc": "METIS",
+      "mode": "main",
+      "code": "1088",
+      "avtr": "X",
+      "cont": "0xdb2bF85Fede151dA1F6d1A0e0205f75FCa1F21cB",
+      "urin": "https://andromeda.metis.io/?owner=1088"
+    },
+    {
+      "name": "Polygon",
+      "crnc": "MATIC",
+      "mode": "test",
+      "code": "80001",
+      "avtr": "X",
+      "cont": "0x63279649321a1C4B9c97Da83b5c4a3D834424226",
+      "urin": "https://rpc-mumbai.maticvigil.com/"
+    },
+    {
+      "name": "Polygon",
+      "crnc": "MATIC",
+      "mode": "main",
+      "code": "137",
+      "avtr": "X",
+      "cont": "0x907F8AE71cf95E0F448578c9550834BBa661E6B6",
+      "urin": "https://polygon-rpc.com"
+    }
+  ]
+}
+
+
+

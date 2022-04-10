@@ -1,0 +1,28 @@
+{
+  "data" : [      
+    { 
+      "name":"Home",
+      "text":"", "icon":"bi-home",
+      "link":"",
+      "user":["ww"],
+      "subs":["ww"],
+      "actv":true
+    },
+    { 
+      "name":"Jobs",
+      "text":"", "icon":"bi-briefcase",
+      "link":"w",
+      "user":["ww"],
+      "subs":["ww"],
+      "actv": false
+    },
+    { 
+      "name":"Events",
+      "text":"", "icon":"bi-check-circle",
+      "link":"e",
+      "user":["ww"],
+      "subs":["ww"],
+      "actv":false
+    }
+  ]
+}

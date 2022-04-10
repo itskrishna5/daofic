@@ -1,0 +1,54 @@
+{
+  "data" : [
+    { "name":"Private Limited Company",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Public Limited Company",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Limited Liability Company",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Partnership",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Limited Liability Partnership",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },    
+    { "name":"One Person Company",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Sole Proprietor",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },    
+    { "name":"Not For Profit",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },
+    { "name":"Government",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    },    
+    { "name":"Other - Unregistered",
+      "text":"", 
+      "icon":"bi-person",
+      "actv":true
+    }
+  ]
+}
