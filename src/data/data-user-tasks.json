@@ -1,93 +1,21 @@
 {
   "data" : [  
     { 
-      "name":"Mint",
-      "text":"Mint", 
-      "icon":"bx bx-diamond",
-      "avtr":"",
-      "link":"creds/mint",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
       "name":"Transfer",
       "text":"Transfer", 
       "icon":"bx bx-send",
       "avtr":"",
-      "link":"creds/transfer",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"Burn",
-      "text":"Burn", 
-      "icon":"bx bx-trash",
-      "avtr":"",
-      "link":"creds/burn",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"POAP",
-      "text":"POAP", 
-      "icon":"bx bx-gift",
-      "avtr":"",
-      "link":"store/events",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"Awards",
-      "text":"Awards", 
-      "icon":"bx bx-trophy",
-      "avtr":"",
-      "link":"store/awards",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"Offer",
-      "text":"Offer", 
-      "icon":"bx bx-briefcase-alt",
-      "avtr":"",
-      "link":"store/work",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"New Format",
-      "text":"New Format", 
-      "icon":"bx bx-palette",
-      "avtr":"",
-      "link":"formats/new",
-      "user": ["bznx"],
+      "link":"transfers/new",
+      "user":["indx", "bznx"],
       "actv": true
-    },
-    { 
-      "name":"New Event",
-      "text":"New Event", 
-      "icon":"bx bx-calendar",
-      "avtr":"",
-      "link":"events/create",
-      "user": ["bznx"],
-      "actv": false
-    },
-    { 
-      "name":"New Job",
-      "text":"New Job", 
-      "icon":"bx bx-briefcase",
-      "avtr":"",
-      "link":"works/create",
-      "user": ["bznx"],
-      "actv": false
     },
     { 
       "name":"Add Contact",
       "text":"Add Contact", 
       "icon":"bx bx-user-circle",
       "avtr":"",
-      "link":"network/add",
-      "user": ["bznx"],
+      "link":"contacts/add",
+      "user":["indx", "bznx"],
       "actv": true
     },
     { 
@@ -96,44 +24,8 @@
       "icon":"bx bx-credit-card",
       "avtr":"",
       "link":"accounts/link",
-      "user": ["bznx"],
+      "user":["indx", "bznx"],
       "actv": true
-    },
-    { 
-      "name":"Add Funds",
-      "text":"Add Funds", 
-      "icon":"bx bx-wallet-alt",
-      "avtr":"",
-      "link":"transfers/credit/account",
-      "user": ["indx", "bznx"],
-      "actv": false
-    },
-    { 
-      "name":"Transfer Funds",
-      "text":"Transfer", 
-      "icon":"bx bx-up-arrow-circle",
-      "avtr":"h",
-      "link":"transfers/debit",
-      "user": ["indx", "bznx"],
-      "actv": false
-    },
-    { 
-      "name":"Request Funds",
-      "text":"Request Funds", 
-      "icon":"bx bx-down-arrow-circle",
-      "avtr":"",
-      "link":"transfers/credit",
-      "user": ["indx", "bznx"],
-      "actv": false
-    },
-    { 
-      "name": "Withdraw Funds",
-      "text": "Withdraw Funds", 
-      "icon": "bi-arrow-down-short",
-      "avtr": "",
-      "link": "transfers/debit/account",
-      "user": ["indx", "bznx"],
-      "actv": false
-    } 
+    }
   ]
 }

@@ -30,13 +30,13 @@
       "link":"network",
       "user":["indx", "bznx"],
       "subs":["lite"],
-      "actv": false
+      "actv": true
     },
     { 
       "name":"Transfers",
       "text":"", "icon":"bi-check-circle",
       "link":"transfers",
-      "user":["bznx"],
+      "user":["indx", "bznx"],
       "subs":["lite"],
       "actv":true
     },
@@ -46,15 +46,7 @@
       "link":"store",
       "user":["bznx"],
       "subs":["lite"],
-      "actv":true
-    },
-    { 
-      "name":"Transfers",
-      "text":"", "icon":"bi-check-circle",
-      "link":"transfers",
-      "user":["indx"],
-      "subs":["lite"],
-      "actv":true
+      "actv": false
     }
   ]
 }

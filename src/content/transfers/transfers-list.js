@@ -1,12 +1,21 @@
 //transfers
 import { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import Blockies from 'react-blockies';
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
 
-import { Form, Input, Button } from 'antd';
-import { parseFixed } from '@ethersproject/bignumber';
+import WebbDividerSmall from "../webb/webb-divider-sm";
+import WebbDividerMedium from "../webb/webb-divider-md";
+import WebbModuleInfo from "../webb/webb-module-info";
+import WebbLoader from "../webb/webb-loader";
+import WebbSpinner from '../webb/webb-spinner-sm';
+import FormNeeded from "../webb/form-needed";
 
-async function getStreamsData() {
+import { UserForm } from "../../services/srvc-utilities";
+import { GetLocalUser, GetLocalBusiness } from "../../services/srvc-auth-user";
+
+const getStreamsData = async(acnt) => {
   
   const Provider = new ethers.providers.Web3Provider(window.ethereum);
   const accounts = await window.ethereum.request({
@@ -21,7 +30,7 @@ async function getStreamsData() {
     chainId: Number(chainId),
     provider: Provider
   });
-   
+  
   const result = await sf.query.listStreams(
     { sender: '0xbC1c628bfDc9156e11b2525fc19D64A9AFE8895c' },
     { skip: 0, take: 150 },
@@ -32,16 +41,25 @@ async function getStreamsData() {
   
   const streams = Array.from(result.data, item => {return {
     ...item, 
-    amnt: (ethers.utils.formatEther(item.streamedUntilUpdatedAt)).split('.')[0]+'.'+(ethers.utils.formatEther(item.streamedUntilUpdatedAt)).split('.')[1].substring(0,6)
+    createdAtTimestamp: item.createdAtTimestamp*1000,
+    live: item.currentFlowRate === "0" ? false : true,
+    amnt: (ethers.utils.formatEther(item.streamedUntilUpdatedAt)).split('.')[0]+'.'+(ethers.utils.formatEther(item.streamedUntilUpdatedAt)).split('.')[1].substring(0,6),
+    rate: (ethers.utils.formatEther(item.currentFlowRate)*3600*24*30)
   }})
 
   console.log(streams)
+  return {data: streams}
 }
 
 export default function TransfersListModule() {
 
-  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const [submit, setSubmit] = useState(false);
+  const [done, setDone] = useState(false);
+
   const [currentAccount, setCurrentAccount] = useState("");
+
+  const [data, setData] = useState([])
 
   const connectWallet = async () => {
     try {
@@ -69,26 +87,26 @@ export default function TransfersListModule() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have metamask!");
+      // console.log("Make sure you have metamask!");
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      // console.log("We have the ethereum object", ethereum);
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const chain = await window.ethereum.request({ method: "eth_chainId" });
-    let chainId = chain;
-    console.log("chain ID:", chain);
-    console.log("global Chain Id:", chainId);
+    // let chainId = chain;
+    // console.log("chain ID:", chain);
+    // console.log("global Chain Id:", chainId);
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account:", account);
+      // console.log("Found an authorized account:", account);
       setCurrentAccount(account);
       // Setup listener! This is for the case where a user comes to our site
       // and ALREADY had their wallet connected + authorized.
       // setupEventListener()
     } else {
-      console.log("No authorized account found");
+      // console.log("No authorized account found");
     }
   };
 
@@ -96,21 +114,100 @@ export default function TransfersListModule() {
     checkIfWalletIsConnected();
   }, []);
 
+  useEffect(() => {
+    async function fetchData() {
+
+      setLoading(true)
+      if (currentAccount!=="") {
+        console.log ("acnt",currentAccount)
+        
+        var result = await getStreamsData(currentAccount)
+        console.log(result.data)
+        setData(result.data)
+      } 
+      setLoading(false)
+    }
+    fetchData();
+  }, [currentAccount]);
+
 
   const handleChange = (values) => {
     
   }
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async() => {
+    // e.preventDefault();
 
-    getStreamsData()
+    var result
+    if (currentAccount!=="") {
+      result = await getStreamsData(currentAccount)
+      console.log(result.data)
+      setData(result.data)
+    }
+
+    if (result.data) {setDone(true)}
+    
   };
+
+  if (loading) return (<> <div className='text-center'><WebbSpinner /></div> </>)
 
   return (
   <>
 
-    <Button type="primary" onClick={()=>handleSubmit()}>Get Stream Data</Button>
+    {/* data */}
+    <WebbModuleInfo data={{ text: `Total Transfers: ${data.length}` }} />
     
+    {data && data.map((item, i) => (
+        
+          <Link to={`/${UserForm()}/${item.link}`} className="mb-2">
+            <div className="d-flex rounded-wd py-3 bg-wite hilite mb-2">
+        
+              <div className='ms-2'>
+                <Blockies seed={item.receiver || '123'} className="identicon rounded-circle m-0 p-0 mt-1" size={7} />
+              </div>
+              
+              <div className="ms-2 d-md-block">
+                <span>{item.live 
+                  ? <i className='bx bxs-circle text-success'></i>
+                  : <i className='bx bxs-circle text-lite'></i>
+                }</span>
+              </div>
+
+              <div className="ms-2 d-md-block">
+                <p className={`m-0 fw-bold text-dark small text-sm`}>{item.receiver}</p>
+                <p className={`m-0 text-dark small text-sm`}>
+                  {(new Date(item.createdAtTimestamp)).toISOString()}
+                </p>
+              </div>
+
+              <div className='ms-auto text-end me-2'>
+                <p className={`m-0 fw-bold text-dark text-sm`}>
+                  {item.amnt}
+                </p>
+                <p className={`m-0 text-dark small text-sm`}>
+                  {item.rate}
+                </p>
+              </div>
+
+
+            </div>     
+            
+          </Link>
+        
+      ))}
+
+
+
+    {/* actn */}
+    <WebbDividerMedium />
+    <div className={currentAccount !=="" ? 'd-none' : ''}>
+      <div className="d-grid">
+        <button className={`btn height-md btn-primary back-color-main border-none rounded-pill`}
+           onClick = {() => connectWallet()}
+          ><small>Connect Account</small>
+        </button>
+      </div>
+    </div>
 
   </>
   )

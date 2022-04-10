@@ -10,6 +10,9 @@ import HomeUser from "../viewsxx/home-indx";
 import HomeBusiness from "../viewsxx/home-bznx";
 
 // views - transfers
+import Transfers from "../viewsxt/transfers";
+import TransfersNew from "../viewsxt/transfers-new";
+import TransfersDebitStream from "../viewsxt/transfers-debit-stream";
 
 // views - settings
 
@@ -33,6 +36,11 @@ const routes = [
 
   { path:'/in/home', component: HomeUser, auth:false },
   { path:'/bz/home', component: HomeBusiness, auth:false },
+
+  { path:'/bz/transfers', component: Transfers, auth:false },
+  { path:'/bz/transfers/new', component: TransfersNew, auth:false },
+  { path:'/bz/transfers/new/direct', component: TransfersNew, auth:false },
+  { path:'/bz/transfers/debit/stream', component: TransfersDebitStream, auth:false },
 
   { path:'/account/mobile', component: AuthMobileFirebase, auth:false },
   { path:'/account/mail', component: AuthMailFirebase, auth:false },

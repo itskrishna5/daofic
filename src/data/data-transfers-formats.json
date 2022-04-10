@@ -1,0 +1,20 @@
+{
+  "data" : [
+    { 
+      "name":"Instant Transfer",
+      "text":"Instant Fund Transfer to one or more destination Account/Wallet", 
+      "link":"transfers/debit/instant",
+      "icon":"bx bx-play-circle",
+      "user":["indx"],
+      "actv":true
+    },
+    { 
+      "name":"Transfer Stream",
+      "text":"Open a Payment Stream to a one or more destination Account/Wallet",
+      "link":"transfers/debit/stream",
+      "icon":"bx bx-fast-forward-circle",
+      "user":["bznx"],
+      "actv": true
+    }
+  ]
+}
