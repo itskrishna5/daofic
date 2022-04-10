@@ -47,11 +47,29 @@ const getStreamsData = async(acnt) => {
     rate: (ethers.utils.formatEther(item.currentFlowRate)*3600*24*30)
   }})
 
-  console.log(streams)
-  return {data: streams}
+  const usrx = [... new Set(Array.from(result.data, item => item.receiver))]
+  console.log (usrx)
+
+  var users=[]
+
+  for (let x=0; x<usrx.length; x++) {
+    users[x] = {
+      acnt: usrx[x],
+      amnt: result.data.filter(item => item.receiver === usrx[x]).reduce( (a,c)=> a + Number(ethers.utils.formatEther(c.streamedUntilUpdatedAt)),0),
+      cntr: result.data.filter(item => item.receiver === usrx[x]).length
+
+    }
+  }
+
+  return {data: users}
 }
 
-export default function TransfersListModule() {
+export default function ContactsListModule() {
+
+  const usxx = UserForm()
+  const asset = UserForm() === "in" ? GetLocalUser() : GetLocalBusiness();
+
+  const history = useHistory()
 
   const [loading, setLoading] = useState(false);
   const [submit, setSubmit] = useState(false);
@@ -59,7 +77,7 @@ export default function TransfersListModule() {
 
   const [currentAccount, setCurrentAccount] = useState("");
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState()
 
   const connectWallet = async () => {
     try {
@@ -118,17 +136,13 @@ export default function TransfersListModule() {
     async function fetchData() {
 
       setLoading(true)
-      if (currentAccount!=="") {
-        console.log ("acnt",currentAccount)
-        
-        var result = await getStreamsData(currentAccount)
-        console.log(result.data)
-        setData(result.data)
-      } 
+      var result = await getStreamsData(currentAccount)
+      console.log(result.data)
+      setData(result.data)
       setLoading(false)
     }
     fetchData();
-  }, [currentAccount]);
+  }, []);
 
 
   const handleChange = (values) => {
@@ -155,59 +169,36 @@ export default function TransfersListModule() {
   <>
 
     {/* data */}
-    <WebbModuleInfo data={{ text: `Total Transfers: ${data.length}` }} />
+    <WebbModuleInfo data={{ text: `Network Members: ${data && data.length}` }} />
     
     {data && data.map((item, i) => (
         
-          <Link to={`/${UserForm()}/${item.link}`} className="mb-2" key={i}>
-            <div className="d-flex rounded-wd py-3 bg-wite hilite mb-2">
-        
-              <div className='ms-2'>
-                <Blockies seed={item.receiver || '123'} className="identicon rounded-circle m-0 p-0 mt-1" size={7} />
-              </div>
-              
-              <div className="ms-2 d-md-block">
-                <span>{item.live 
-                  ? <i className='bx bxs-circle text-success'></i>
-                  : <i className='bx bxs-circle text-lite'></i>
-                }</span>
-              </div>
+        // <Link to={`/${usxx}/network/v/${item.acnt}`} className="mb-2" key={i}>
+          <div className="d-flex rounded-wd py-3 bg-wite hilite mb-2" key={i}
+            onClick={() => history.push(`/${usxx}/network/v/${item.acnt}`)}
+          >
+      
+            <div className='ms-2'>
+              <Blockies seed={item.acnt || '123'} className="identicon rounded-circle m-0 p-0 mt-1" size={7} />
+            </div>
 
-              <div className="ms-2 d-md-block">
-                <p className={`m-0 fw-bold text-dark small text-sm`}>{item.receiver}</p>
-                <p className={`m-0 text-dark small text-sm`}>
-                  {(new Date(item.createdAtTimestamp)).toISOString()}
-                </p>
-              </div>
+            <div className="ms-2 d-md-block">
+              <p className={`m-0 fw-bold text-dark small text-sm`}>{item.acnt}</p>
+              <p className={`m-0 text-dark small text-sm`}>Total Streams: {item.cntr}</p>
+            </div>
 
-              <div className='ms-auto text-end me-2'>
-                <p className={`m-0 fw-bold text-dark text-sm`}>
+            <div className='ms-auto text-end me-2'>
+              <p className={`m-0 fw-bold text-dark text-sm`}>
                   {item.amnt}{'$'}
                 </p>
-                <p className={`m-0 text-dark small text-sm`}>
-                  {item.rate}
-                </p>
-              </div>
+            </div>
 
 
-            </div>     
-            
-          </Link>
-        
-      ))}
-
-
-
-    {/* actn */}
-    <WebbDividerMedium />
-    <div className={currentAccount !=="" ? 'd-none' : ''}>
-      <div className="d-grid">
-        <button className={`btn height-md btn-primary back-color-main border-none rounded-pill`}
-           onClick = {() => connectWallet()}
-          ><small>Connect Account</small>
-        </button>
-      </div>
-    </div>
+          </div>     
+          
+        // </Link>
+      
+    ))}
 
   </>
   )

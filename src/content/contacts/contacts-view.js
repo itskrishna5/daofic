@@ -1,6 +1,6 @@
 //transfers
 import { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import Blockies from 'react-blockies';
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
@@ -47,13 +47,14 @@ const getStreamsData = async(acnt) => {
     rate: (ethers.utils.formatEther(item.currentFlowRate)*3600*24*30)
   }})
 
-  console.log(streams)
   return {data: streams}
 }
 
-export default function TransfersListModule() {
+export default function ContactsViewModule() {
 
-  const [loading, setLoading] = useState(false);
+  const {id} = useParams();
+
+  const [loading, setLoading] = useState(true);
   const [submit, setSubmit] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -119,16 +120,18 @@ export default function TransfersListModule() {
 
       setLoading(true)
       if (currentAccount!=="") {
-        console.log ("acnt",currentAccount)
+        console.log ("acnt", id)
         
-        var result = await getStreamsData(currentAccount)
+        var result = await getStreamsData()
         console.log(result.data)
-        setData(result.data)
+        setData(result.data.filter(item=>item.receiver===id))
+        
       } 
+      
       setLoading(false)
     }
     fetchData();
-  }, [currentAccount]);
+  }, [id]);
 
 
   const handleChange = (values) => {
@@ -136,16 +139,7 @@ export default function TransfersListModule() {
   }
 
   const handleSubmit = async() => {
-    // e.preventDefault();
 
-    var result
-    if (currentAccount!=="") {
-      result = await getStreamsData(currentAccount)
-      console.log(result.data)
-      setData(result.data)
-    }
-
-    if (result.data) {setDone(true)}
     
   };
 
@@ -159,7 +153,7 @@ export default function TransfersListModule() {
     
     {data && data.map((item, i) => (
         
-          <Link to={`/${UserForm()}/${item.link}`} className="mb-2" key={i}>
+          <div key={i}>
             <div className="d-flex rounded-wd py-3 bg-wite hilite mb-2">
         
               <div className='ms-2'>
@@ -192,7 +186,7 @@ export default function TransfersListModule() {
 
             </div>     
             
-          </Link>
+          </div>
         
       ))}
 

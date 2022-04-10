@@ -9,6 +9,10 @@ import Main from '../viewsxz/main';
 import HomeUser from "../viewsxx/home-indx";
 import HomeBusiness from "../viewsxx/home-bznx";
 
+// views - contacts
+import Contacts from "../viewsxc/contacts";
+import ContactsView from "../viewsxc/contacts-view";
+
 // views - transfers
 import Transfers from "../viewsxt/transfers";
 import TransfersNew from "../viewsxt/transfers-new";
@@ -36,6 +40,9 @@ const routes = [
 
   { path:'/in/home', component: HomeUser, auth:false },
   { path:'/bz/home', component: HomeBusiness, auth:false },
+
+  { path:'/bz/network', component: Contacts, auth:false },
+  { path:'/bz/network/v/:id', component: ContactsView, auth:false },
 
   { path:'/bz/transfers', component: Transfers, auth:false },
   { path:'/bz/transfers/new', component: TransfersNew, auth:false },

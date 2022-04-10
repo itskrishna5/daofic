@@ -10,6 +10,7 @@ import { UserForm } from "../services/srvc-utilities";
 import UserInfoModule from "../content/home/user-infocard";
 import UserTasksModule from "../content/home/user-tasks";
 
+import HomeStatsModule from "../content/home/home-stats";
 
 export default function HomeBusiness() {
 
@@ -26,8 +27,8 @@ export default function HomeBusiness() {
 
           <UserTasksModule />
 
-
-
+          <WebbDividerSmall />
+          <HomeStatsModule />
 
           
           <WebbDividerMedium />

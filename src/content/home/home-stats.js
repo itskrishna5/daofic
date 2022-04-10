@@ -48,10 +48,20 @@ const getStreamsData = async(acnt) => {
   }})
 
   console.log(streams)
-  return {data: streams}
+
+  const amtotal = streams.reduce( (a,c)=> a + Number(ethers.utils.formatEther(c.streamedUntilUpdatedAt)),0)
+  console.log (amtotal)
+
+  const stats = {
+    streamtt: streams.length,
+    streamac: streams.filter(item => item.currentFlowRate !=='0').length,
+    streamam: amtotal.toString().split('.')[0]+'.'+amtotal.toString().split('.')[1].substring(0,6),
+  }
+
+  return {data: stats}
 }
 
-export default function TransfersListModule() {
+export default function HomeStatsModule() {
 
   const [loading, setLoading] = useState(false);
   const [submit, setSubmit] = useState(false);
@@ -59,7 +69,7 @@ export default function TransfersListModule() {
 
   const [currentAccount, setCurrentAccount] = useState("");
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState()
 
   const connectWallet = async () => {
     try {
@@ -118,17 +128,13 @@ export default function TransfersListModule() {
     async function fetchData() {
 
       setLoading(true)
-      if (currentAccount!=="") {
-        console.log ("acnt",currentAccount)
-        
-        var result = await getStreamsData(currentAccount)
-        console.log(result.data)
-        setData(result.data)
-      } 
+      var result = await getStreamsData(currentAccount)
+      console.log(result.data)
+      setData(result.data)
       setLoading(false)
     }
     fetchData();
-  }, [currentAccount]);
+  }, []);
 
 
   const handleChange = (values) => {
@@ -155,57 +161,20 @@ export default function TransfersListModule() {
   <>
 
     {/* data */}
-    <WebbModuleInfo data={{ text: `Total Transfers: ${data.length}` }} />
+    <WebbModuleInfo data={{ text: `Transfer Statistics` }} />
     
-    {data && data.map((item, i) => (
-        
-          <Link to={`/${UserForm()}/${item.link}`} className="mb-2" key={i}>
-            <div className="d-flex rounded-wd py-3 bg-wite hilite mb-2">
-        
-              <div className='ms-2'>
-                <Blockies seed={item.receiver || '123'} className="identicon rounded-circle m-0 p-0 mt-1" size={7} />
-              </div>
-              
-              <div className="ms-2 d-md-block">
-                <span>{item.live 
-                  ? <i className='bx bxs-circle text-success'></i>
-                  : <i className='bx bxs-circle text-lite'></i>
-                }</span>
-              </div>
-
-              <div className="ms-2 d-md-block">
-                <p className={`m-0 fw-bold text-dark small text-sm`}>{item.receiver}</p>
-                <p className={`m-0 text-dark small text-sm`}>
-                  {(new Date(item.createdAtTimestamp)).toISOString()}
-                </p>
-              </div>
-
-              <div className='ms-auto text-end me-2'>
-                <p className={`m-0 fw-bold text-dark text-sm`}>
-                  {item.amnt}{'$'}
-                </p>
-                <p className={`m-0 text-dark small text-sm`}>
-                  {item.rate}
-                </p>
-              </div>
-
-
-            </div>     
-            
-          </Link>
-        
-      ))}
-
-
-
-    {/* actn */}
-    <WebbDividerMedium />
-    <div className={currentAccount !=="" ? 'd-none' : ''}>
-      <div className="d-grid">
-        <button className={`btn height-md btn-primary back-color-main border-none rounded-pill`}
-           onClick = {() => connectWallet()}
-          ><small>Connect Account</small>
-        </button>
+    <div className='p-3 bg-white'>
+      <div className='d-flex'>
+        <div className='me-auto'>
+          <p>Total Payment Streams: </p>
+          <p>Total Active Streams: </p>
+          <p>Total Payment: </p>
+        </div>
+        <div className='text-end'>
+          <p>{data && data.streamtt}</p>
+          <p>{data && data.streamac}</p>
+          <p>{data && data.streamam}</p>
+        </div>
       </div>
     </div>
 
